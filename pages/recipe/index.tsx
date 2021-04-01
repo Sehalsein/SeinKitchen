@@ -30,7 +30,7 @@ const RecipeListPage = () => {
   if (error) return <h1>{"Error"}</h1>
 
   return (
-    <Layout title='Sein Kitchen' description=''>
+    <Layout title='Sein Kitchen' description='Sein Kitchen'>
       <div className='relative w-full mb-4 p-2'>
         <input
           aria-label='Search recipes'

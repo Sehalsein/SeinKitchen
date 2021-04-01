@@ -8,6 +8,7 @@ type RecipeCardBigType = {
   authorId: string
   recipeSlug: string
   coverImage?: string
+  category?: string
   onClick?: () => void
 }
 
@@ -16,15 +17,16 @@ const RecipeCardBig: React.FC<RecipeCardBigType> = ({
   author,
   authorId,
   recipeSlug,
-  coverImage = '/images/placeholder.webp'
+  coverImage = '/images/placeholder.webp',
+  category
 }: RecipeCardBigType) => {
   return (
     <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 p-2 mb-4 sm:mb-8 md:mb-12'>
       <div className='flex flex-col justify-center items-start sm:col-span-1'>
         <span className='text-sm mx-1 border-b-4 border-pink-600 w-max text-pink-600 font-bold uppercase'>
-          {recipeSlug}
+          {category}
         </span>
-        <NextLink href={`recipe/${recipeSlug}`}>
+        <NextLink href={`/recipe/${recipeSlug}`}>
           <a>
             <h1 className='text-4xl md:text-6xl font-medium text-black dark:text-white mt-2'>
               {title}

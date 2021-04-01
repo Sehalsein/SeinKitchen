@@ -29,7 +29,7 @@ const HomePage = () => {
   if (error) return <h1>{"Error"}</h1>
 
   return (
-    <Layout title='Sein Kitchen' description=''>
+    <Layout title='Sein Kitchen' description='Sein Kitchen'>
       {data && data.recipe && (
         <RecipeCardBig
           title={data.recipe.title}
@@ -37,6 +37,7 @@ const HomePage = () => {
           recipeSlug={data.recipe.slug}
           authorId={data.recipe.author?.id || ''}
           coverImage={data.recipe.coverImage?.url}
+          category={data.recipe.category}
         />
       )}
 

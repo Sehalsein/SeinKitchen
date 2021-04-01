@@ -16,7 +16,11 @@ query recipe($slug: String!) {
   recipe(where: { slug: $slug }) {
     title
     slug
-    content
+    category
+    summary
+    content {
+      markdown
+    }
     publishedAt
     coverImage {
       url
@@ -24,6 +28,9 @@ query recipe($slug: String!) {
     author {
       id
       name
+      displayPicture {
+        url
+      }
     }
   }
 }
@@ -43,7 +50,7 @@ query homePageRecipes($first: Int, $slug: String!) {
   recipe(where: { slug: $slug }) {
     title
     slug
-    content
+    category
     publishedAt
     coverImage {
       url

@@ -7,7 +7,7 @@ export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K]
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 const defaultOptions =  {}
-// The file generated on: 2021-04-01 16:42:45
+// The file generated on: 2021-04-01 21:05:14
 
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -78,6 +78,7 @@ export type Asset = Node & {
   /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']>;
   coverImageRecipe: Array<Recipe>;
+  displayPictureAuthor: Array<Author>;
   /** List of Asset versions */
   history: Array<Version>;
   /** Get the url for the asset with provided transformations applied. */
@@ -150,6 +151,19 @@ export type AssetCoverImageRecipeArgs = {
 
 
 /** Asset system model */
+export type AssetDisplayPictureAuthorArgs = {
+  where?: Maybe<AuthorWhereInput>;
+  orderBy?: Maybe<AuthorOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Asset system model */
 export type AssetHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
@@ -189,6 +203,7 @@ export type AssetCreateInput = {
   size?: Maybe<Scalars['Float']>;
   mimeType?: Maybe<Scalars['String']>;
   coverImageRecipe?: Maybe<RecipeCreateManyInlineInput>;
+  displayPictureAuthor?: Maybe<AuthorCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<AssetCreateLocalizationsInput>;
 };
@@ -318,6 +333,9 @@ export type AssetManyWhereInput = {
   coverImageRecipe_every?: Maybe<RecipeWhereInput>;
   coverImageRecipe_some?: Maybe<RecipeWhereInput>;
   coverImageRecipe_none?: Maybe<RecipeWhereInput>;
+  displayPictureAuthor_every?: Maybe<AuthorWhereInput>;
+  displayPictureAuthor_some?: Maybe<AuthorWhereInput>;
+  displayPictureAuthor_none?: Maybe<AuthorWhereInput>;
 };
 
 export enum AssetOrderByInput {
@@ -359,6 +377,7 @@ export type AssetUpdateInput = {
   size?: Maybe<Scalars['Float']>;
   mimeType?: Maybe<Scalars['String']>;
   coverImageRecipe?: Maybe<RecipeUpdateManyInlineInput>;
+  displayPictureAuthor?: Maybe<AuthorUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: Maybe<AssetUpdateLocalizationsInput>;
 };
@@ -663,6 +682,9 @@ export type AssetWhereInput = {
   coverImageRecipe_every?: Maybe<RecipeWhereInput>;
   coverImageRecipe_some?: Maybe<RecipeWhereInput>;
   coverImageRecipe_none?: Maybe<RecipeWhereInput>;
+  displayPictureAuthor_every?: Maybe<AuthorWhereInput>;
+  displayPictureAuthor_some?: Maybe<AuthorWhereInput>;
+  displayPictureAuthor_none?: Maybe<AuthorWhereInput>;
 };
 
 /** References Asset record uniquely */
@@ -695,6 +717,8 @@ export type Author = Node & {
   name: Scalars['String'];
   /** Recipes of the Author */
   recipes: Array<Recipe>;
+  /** display picture for Author */
+  displayPicture?: Maybe<Asset>;
   /** List of Author versions */
   history: Array<Version>;
 };
@@ -740,6 +764,12 @@ export type AuthorRecipesArgs = {
 
 
 /** Application Authors */
+export type AuthorDisplayPictureArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Application Authors */
 export type AuthorHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
@@ -768,6 +798,7 @@ export type AuthorCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   name: Scalars['String'];
   recipes?: Maybe<RecipeCreateManyInlineInput>;
+  displayPicture?: Maybe<AssetCreateOneInlineInput>;
 };
 
 export type AuthorCreateManyInlineInput = {
@@ -892,6 +923,7 @@ export type AuthorManyWhereInput = {
   recipes_every?: Maybe<RecipeWhereInput>;
   recipes_some?: Maybe<RecipeWhereInput>;
   recipes_none?: Maybe<RecipeWhereInput>;
+  displayPicture?: Maybe<AssetWhereInput>;
 };
 
 export enum AuthorOrderByInput {
@@ -910,6 +942,7 @@ export enum AuthorOrderByInput {
 export type AuthorUpdateInput = {
   name?: Maybe<Scalars['String']>;
   recipes?: Maybe<RecipeUpdateManyInlineInput>;
+  displayPicture?: Maybe<AssetUpdateOneInlineInput>;
 };
 
 export type AuthorUpdateManyInlineInput = {
@@ -1075,6 +1108,7 @@ export type AuthorWhereInput = {
   recipes_every?: Maybe<RecipeWhereInput>;
   recipes_some?: Maybe<RecipeWhereInput>;
   recipes_none?: Maybe<RecipeWhereInput>;
+  displayPicture?: Maybe<AssetWhereInput>;
 };
 
 /** References Author record uniquely */
@@ -1605,6 +1639,9 @@ export type MutationUpsertRecipeArgs = {
 
 export type MutationPublishRecipeArgs = {
   where: RecipeWhereUniqueInput;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
   to?: Array<Stage>;
 };
 
@@ -1612,6 +1649,8 @@ export type MutationPublishRecipeArgs = {
 export type MutationUnpublishRecipeArgs = {
   where: RecipeWhereUniqueInput;
   from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -1645,6 +1684,9 @@ export type MutationPublishManyRecipesConnectionArgs = {
   last?: Maybe<Scalars['Int']>;
   before?: Maybe<Scalars['ID']>;
   after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -1657,6 +1699,8 @@ export type MutationUnpublishManyRecipesConnectionArgs = {
   last?: Maybe<Scalars['Int']>;
   before?: Maybe<Scalars['ID']>;
   after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -1674,12 +1718,17 @@ export type MutationDeleteManyRecipesArgs = {
 export type MutationPublishManyRecipesArgs = {
   where?: Maybe<RecipeManyWhereInput>;
   to?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
 };
 
 
 export type MutationUnpublishManyRecipesArgs = {
   where?: Maybe<RecipeManyWhereInput>;
   from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
 };
 
 /** An object with an ID */
@@ -1926,6 +1975,10 @@ export type Recipe = Node & {
   __typename?: 'Recipe';
   /** System stage field */
   stage: Stage;
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Recipe>;
   /** Get the document in other stages */
   documentInStages: Array<Recipe>;
   /** The unique identifier */
@@ -1944,16 +1997,29 @@ export type Recipe = Node & {
   publishedBy?: Maybe<User>;
   /** Title of Recipe */
   title: Scalars['String'];
-  /** Recipe Content */
-  content: Scalars['String'];
+  /** Summary of the Recipe */
+  summary?: Maybe<Scalars['String']>;
+  /** Content of Recipe */
+  content: RichText;
   /** Cover Image for Recipe */
   coverImage?: Maybe<Asset>;
   /** Author of the Recipe */
   author?: Maybe<Author>;
   /** Slug for recipe */
   slug: Scalars['String'];
+  /** Recipe Category */
+  category: RecipeCategories;
+  /** Tags */
+  tags: Array<RecipeCategories>;
   /** List of Recipe versions */
   history: Array<Version>;
+};
+
+
+/** Recipe Model */
+export type RecipeLocalizationsArgs = {
+  locales?: Array<Locale>;
+  includeCurrent?: Scalars['Boolean'];
 };
 
 
@@ -1966,14 +2032,32 @@ export type RecipeDocumentInStagesArgs = {
 
 
 /** Recipe Model */
+export type RecipeCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+/** Recipe Model */
 export type RecipeCreatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
 
 /** Recipe Model */
+export type RecipeUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+/** Recipe Model */
 export type RecipeUpdatedByArgs = {
   locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Recipe Model */
+export type RecipePublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -2002,6 +2086,14 @@ export type RecipeHistoryArgs = {
   stageOverride?: Maybe<Stage>;
 };
 
+/** Category of Recipe */
+export enum RecipeCategories {
+  Breakfast = 'Breakfast',
+  Dinner = 'Dinner',
+  Lunch = 'Lunch',
+  Snack = 'Snack'
+}
+
 export type RecipeConnectInput = {
   /** Document to connect */
   where: RecipeWhereUniqueInput;
@@ -2023,10 +2115,33 @@ export type RecipeCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   title: Scalars['String'];
-  content: Scalars['String'];
+  summary?: Maybe<Scalars['String']>;
+  /** content input for default locale (en) */
+  content: Scalars['RichTextAST'];
   coverImage?: Maybe<AssetCreateOneInlineInput>;
   author?: Maybe<AuthorCreateOneInlineInput>;
   slug: Scalars['String'];
+  category: RecipeCategories;
+  tags?: Maybe<Array<RecipeCategories>>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<RecipeCreateLocalizationsInput>;
+};
+
+export type RecipeCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  content: Scalars['RichTextAST'];
+};
+
+export type RecipeCreateLocalizationInput = {
+  /** Localization input */
+  data: RecipeCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type RecipeCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<RecipeCreateLocalizationInput>>;
 };
 
 export type RecipeCreateManyInlineInput = {
@@ -2148,25 +2263,25 @@ export type RecipeManyWhereInput = {
   title_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   title_not_ends_with?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
+  summary?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
-  content_not?: Maybe<Scalars['String']>;
+  summary_not?: Maybe<Scalars['String']>;
   /** All values that are contained in given list. */
-  content_in?: Maybe<Array<Scalars['String']>>;
+  summary_in?: Maybe<Array<Scalars['String']>>;
   /** All values that are not contained in given list. */
-  content_not_in?: Maybe<Array<Scalars['String']>>;
+  summary_not_in?: Maybe<Array<Scalars['String']>>;
   /** All values containing the given string. */
-  content_contains?: Maybe<Scalars['String']>;
+  summary_contains?: Maybe<Scalars['String']>;
   /** All values not containing the given string. */
-  content_not_contains?: Maybe<Scalars['String']>;
+  summary_not_contains?: Maybe<Scalars['String']>;
   /** All values starting with the given string. */
-  content_starts_with?: Maybe<Scalars['String']>;
+  summary_starts_with?: Maybe<Scalars['String']>;
   /** All values not starting with the given string. */
-  content_not_starts_with?: Maybe<Scalars['String']>;
+  summary_not_starts_with?: Maybe<Scalars['String']>;
   /** All values ending with the given string. */
-  content_ends_with?: Maybe<Scalars['String']>;
+  summary_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
-  content_not_ends_with?: Maybe<Scalars['String']>;
+  summary_not_ends_with?: Maybe<Scalars['String']>;
   coverImage?: Maybe<AssetWhereInput>;
   author?: Maybe<AuthorWhereInput>;
   slug?: Maybe<Scalars['String']>;
@@ -2188,6 +2303,23 @@ export type RecipeManyWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
+  category?: Maybe<RecipeCategories>;
+  /** All values that are not equal to given value. */
+  category_not?: Maybe<RecipeCategories>;
+  /** All values that are contained in given list. */
+  category_in?: Maybe<Array<RecipeCategories>>;
+  /** All values that are not contained in given list. */
+  category_not_in?: Maybe<Array<RecipeCategories>>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  tags?: Maybe<Array<RecipeCategories>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  tags_not?: Maybe<Array<RecipeCategories>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  tags_contains_all?: Maybe<Array<RecipeCategories>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  tags_contains_some?: Maybe<Array<RecipeCategories>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  tags_contains_none?: Maybe<Array<RecipeCategories>>;
 };
 
 export enum RecipeOrderByInput {
@@ -2201,18 +2333,47 @@ export enum RecipeOrderByInput {
   PublishedAtDesc = 'publishedAt_DESC',
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
-  ContentAsc = 'content_ASC',
-  ContentDesc = 'content_DESC',
+  SummaryAsc = 'summary_ASC',
+  SummaryDesc = 'summary_DESC',
   SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC'
+  SlugDesc = 'slug_DESC',
+  CategoryAsc = 'category_ASC',
+  CategoryDesc = 'category_DESC',
+  TagsAsc = 'tags_ASC',
+  TagsDesc = 'tags_DESC'
 }
 
 export type RecipeUpdateInput = {
   title?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
+  summary?: Maybe<Scalars['String']>;
+  /** content input for default locale (en) */
+  content?: Maybe<Scalars['RichTextAST']>;
   coverImage?: Maybe<AssetUpdateOneInlineInput>;
   author?: Maybe<AuthorUpdateOneInlineInput>;
   slug?: Maybe<Scalars['String']>;
+  category?: Maybe<RecipeCategories>;
+  tags?: Maybe<Array<RecipeCategories>>;
+  /** Manage document localizations */
+  localizations?: Maybe<RecipeUpdateLocalizationsInput>;
+};
+
+export type RecipeUpdateLocalizationDataInput = {
+  content?: Maybe<Scalars['RichTextAST']>;
+};
+
+export type RecipeUpdateLocalizationInput = {
+  data: RecipeUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type RecipeUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<RecipeCreateLocalizationInput>>;
+  /** Localizations to update */
+  update?: Maybe<Array<RecipeUpdateLocalizationInput>>;
+  upsert?: Maybe<Array<RecipeUpsertLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>;
 };
 
 export type RecipeUpdateManyInlineInput = {
@@ -2234,7 +2395,27 @@ export type RecipeUpdateManyInlineInput = {
 
 export type RecipeUpdateManyInput = {
   title?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
+  summary?: Maybe<Scalars['String']>;
+  /** content input for default locale (en) */
+  content?: Maybe<Scalars['RichTextAST']>;
+  category?: Maybe<RecipeCategories>;
+  tags?: Maybe<Array<RecipeCategories>>;
+  /** Optional updates to localizations */
+  localizations?: Maybe<RecipeUpdateManyLocalizationsInput>;
+};
+
+export type RecipeUpdateManyLocalizationDataInput = {
+  content?: Maybe<Scalars['RichTextAST']>;
+};
+
+export type RecipeUpdateManyLocalizationInput = {
+  data: RecipeUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type RecipeUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: Maybe<Array<RecipeUpdateManyLocalizationInput>>;
 };
 
 export type RecipeUpdateManyWithNestedWhereInput = {
@@ -2271,6 +2452,12 @@ export type RecipeUpsertInput = {
   create: RecipeCreateInput;
   /** Update document if it exists */
   update: RecipeUpdateInput;
+};
+
+export type RecipeUpsertLocalizationInput = {
+  update: RecipeUpdateLocalizationDataInput;
+  create: RecipeCreateLocalizationDataInput;
+  locale: Locale;
 };
 
 export type RecipeUpsertWithNestedWhereUniqueInput = {
@@ -2376,25 +2563,25 @@ export type RecipeWhereInput = {
   title_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   title_not_ends_with?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
+  summary?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
-  content_not?: Maybe<Scalars['String']>;
+  summary_not?: Maybe<Scalars['String']>;
   /** All values that are contained in given list. */
-  content_in?: Maybe<Array<Scalars['String']>>;
+  summary_in?: Maybe<Array<Scalars['String']>>;
   /** All values that are not contained in given list. */
-  content_not_in?: Maybe<Array<Scalars['String']>>;
+  summary_not_in?: Maybe<Array<Scalars['String']>>;
   /** All values containing the given string. */
-  content_contains?: Maybe<Scalars['String']>;
+  summary_contains?: Maybe<Scalars['String']>;
   /** All values not containing the given string. */
-  content_not_contains?: Maybe<Scalars['String']>;
+  summary_not_contains?: Maybe<Scalars['String']>;
   /** All values starting with the given string. */
-  content_starts_with?: Maybe<Scalars['String']>;
+  summary_starts_with?: Maybe<Scalars['String']>;
   /** All values not starting with the given string. */
-  content_not_starts_with?: Maybe<Scalars['String']>;
+  summary_not_starts_with?: Maybe<Scalars['String']>;
   /** All values ending with the given string. */
-  content_ends_with?: Maybe<Scalars['String']>;
+  summary_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
-  content_not_ends_with?: Maybe<Scalars['String']>;
+  summary_not_ends_with?: Maybe<Scalars['String']>;
   coverImage?: Maybe<AssetWhereInput>;
   author?: Maybe<AuthorWhereInput>;
   slug?: Maybe<Scalars['String']>;
@@ -2416,6 +2603,23 @@ export type RecipeWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
+  category?: Maybe<RecipeCategories>;
+  /** All values that are not equal to given value. */
+  category_not?: Maybe<RecipeCategories>;
+  /** All values that are contained in given list. */
+  category_in?: Maybe<Array<RecipeCategories>>;
+  /** All values that are not contained in given list. */
+  category_not_in?: Maybe<Array<RecipeCategories>>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  tags?: Maybe<Array<RecipeCategories>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  tags_not?: Maybe<Array<RecipeCategories>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  tags_contains_all?: Maybe<Array<RecipeCategories>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  tags_contains_some?: Maybe<Array<RecipeCategories>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  tags_contains_none?: Maybe<Array<RecipeCategories>>;
 };
 
 /** References Recipe record uniquely */
@@ -2872,6 +3076,30 @@ export enum _SystemDateTimeFieldVariation {
   Combined = 'combined'
 }
 
+export type AuthorQueryVariables = Exact<{
+  id?: Maybe<Scalars['ID']>;
+}>;
+
+
+export type AuthorQuery = (
+  { __typename?: 'Query' }
+  & { author?: Maybe<(
+    { __typename?: 'Author' }
+    & Pick<Author, 'id' | 'name'>
+    & { displayPicture?: Maybe<(
+      { __typename?: 'Asset' }
+      & Pick<Asset, 'url'>
+    )>, recipes: Array<(
+      { __typename?: 'Recipe' }
+      & Pick<Recipe, 'title' | 'slug'>
+      & { coverImage?: Maybe<(
+        { __typename?: 'Asset' }
+        & Pick<Asset, 'url'>
+      )> }
+    )> }
+  )> }
+);
+
 export type RecipesQueryVariables = Exact<{
   title?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
@@ -2902,13 +3130,20 @@ export type RecipeQuery = (
   { __typename?: 'Query' }
   & { recipe?: Maybe<(
     { __typename?: 'Recipe' }
-    & Pick<Recipe, 'title' | 'slug' | 'content' | 'publishedAt'>
-    & { coverImage?: Maybe<(
+    & Pick<Recipe, 'title' | 'slug' | 'category' | 'summary' | 'publishedAt'>
+    & { content: (
+      { __typename?: 'RichText' }
+      & Pick<RichText, 'markdown'>
+    ), coverImage?: Maybe<(
       { __typename?: 'Asset' }
       & Pick<Asset, 'url'>
     )>, author?: Maybe<(
       { __typename?: 'Author' }
       & Pick<Author, 'id' | 'name'>
+      & { displayPicture?: Maybe<(
+        { __typename?: 'Asset' }
+        & Pick<Asset, 'url'>
+      )> }
     )> }
   )> }
 );
@@ -2933,7 +3168,7 @@ export type HomePageRecipesQuery = (
     )> }
   )>, recipe?: Maybe<(
     { __typename?: 'Recipe' }
-    & Pick<Recipe, 'title' | 'slug' | 'content' | 'publishedAt'>
+    & Pick<Recipe, 'title' | 'slug' | 'category' | 'publishedAt'>
     & { coverImage?: Maybe<(
       { __typename?: 'Asset' }
       & Pick<Asset, 'url'>
@@ -2945,6 +3180,52 @@ export type HomePageRecipesQuery = (
 );
 
 
+export const AuthorDocument = gql`
+    query author($id: ID) {
+  author(where: {id: $id}) {
+    id
+    name
+    displayPicture {
+      url
+    }
+    recipes(first: 6) {
+      title
+      slug
+      coverImage {
+        url
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useAuthorQuery__
+ *
+ * To run a query within a React component, call `useAuthorQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAuthorQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAuthorQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useAuthorQuery(baseOptions?: Apollo.QueryHookOptions<AuthorQuery, AuthorQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AuthorQuery, AuthorQueryVariables>(AuthorDocument, options);
+      }
+export function useAuthorLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AuthorQuery, AuthorQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AuthorQuery, AuthorQueryVariables>(AuthorDocument, options);
+        }
+export type AuthorQueryHookResult = ReturnType<typeof useAuthorQuery>;
+export type AuthorLazyQueryHookResult = ReturnType<typeof useAuthorLazyQuery>;
+export type AuthorQueryResult = Apollo.QueryResult<AuthorQuery, AuthorQueryVariables>;
 export const RecipesDocument = gql`
     query recipes($title: String, $first: Int) {
   recipes(where: {title_contains: $title}, first: $first) {
@@ -2994,7 +3275,11 @@ export const RecipeDocument = gql`
   recipe(where: {slug: $slug}) {
     title
     slug
-    content
+    category
+    summary
+    content {
+      markdown
+    }
     publishedAt
     coverImage {
       url
@@ -3002,6 +3287,9 @@ export const RecipeDocument = gql`
     author {
       id
       name
+      displayPicture {
+        url
+      }
     }
   }
 }
@@ -3050,7 +3338,7 @@ export const HomePageRecipesDocument = gql`
   recipe(where: {slug: $slug}) {
     title
     slug
-    content
+    category
     publishedAt
     coverImage {
       url

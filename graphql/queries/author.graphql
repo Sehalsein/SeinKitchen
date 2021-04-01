@@ -1,0 +1,16 @@
+query author($id: ID) {
+  author(where: { id: $id }) {
+    id
+    name
+    displayPicture {
+      url
+    }
+    recipes(first: 6) {
+      title
+      slug
+      coverImage {
+        url
+      }
+    }
+  }
+}

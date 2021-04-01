@@ -97,11 +97,11 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
               {"Recipes"}
             </a>
           </NextLink>
-          <NextLink href='/about'>
+          {/* <NextLink href='/about'>
             <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>
               {"About"}
             </a>
-          </NextLink>
+          </NextLink> */}
         </div>
       </nav>
       <main className='flex flex-col max-w-5xl w-full mx-auto py-8 px-2'>
@@ -121,11 +121,11 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
                 {"Recipe"}
               </a>
             </NextLink>
-            <NextLink href='/about'>
+            {/* <NextLink href='/about'>
               <a className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'>
                 {"About"}
               </a>
-            </NextLink>
+            </NextLink> */}
           </div>
           <div className='flex flex-col space-y-4'>
             <a
