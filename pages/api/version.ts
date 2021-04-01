@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (_: NextApiRequest, res: NextApiResponse) => {
-
   const VERSION_NO = '0.0.1'
   const BUILD_NO = 1
 
@@ -10,5 +9,4 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
     buildVersion: process.env.BUILD_ENV || BUILD_NO,
     healthCheck: true
   })
-
 }
