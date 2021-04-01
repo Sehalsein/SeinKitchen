@@ -2,7 +2,6 @@ import Layout from '@components/Layout'
 import React from 'react'
 import dynamic from 'next/dynamic'
 import {
-  Recipe,
   RecipesQuery,
   useHomePageRecipesQuery
 } from '@graphql/generated/graphql'
@@ -17,7 +16,7 @@ const RecipeCardSmall = dynamic(
 
 const RecipeCardBig = dynamic(() => import('@components/Cards/RecipeCardBig'))
 
-type RecipeListType = PropType<RecipesQuery, 'recipes'> | undefined
+type RecipeListType = PropType<RecipesQuery, 'recipes'>[0]
 
 const HomePage = () => {
   const { loading, error, data } = useHomePageRecipesQuery({
@@ -48,7 +47,7 @@ const HomePage = () => {
         {renderList<RecipeListType>(
           data?.recipes,
           loading,
-          ({ slug, title, author, coverImage }: Recipe) => (
+          ({ slug, title, author, coverImage }: RecipeListType) => (
             <RecipeCardSmall
               key={slug}
               title={title}
@@ -73,7 +72,7 @@ const HomePage = () => {
         {renderList<RecipeListType>(
           data?.recipes,
           loading,
-          ({ slug, title, author, coverImage }: Recipe) => (
+          ({ slug, title, author, coverImage }: RecipeListType) => (
             <RecipeCardSmall
               key={slug}
               title={title}

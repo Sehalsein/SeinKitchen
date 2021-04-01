@@ -2,11 +2,7 @@ import Layout from '@components/Layout'
 import React, { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import withApollo from '@utils/graphql/withApollo'
-import {
-  Recipe,
-  RecipesQuery,
-  useRecipesQuery
-} from '@graphql/generated/graphql'
+import { RecipesQuery, useRecipesQuery } from '@graphql/generated/graphql'
 import renderList from '@utils/renderList'
 import { PropType } from '@utils/misc'
 import useDebounce from '@utils/hooks/useDebounce'
@@ -15,7 +11,7 @@ const RecipeCardSmall = dynamic(
   () => import('@components/Cards/RecipeCardSmall')
 )
 
-type RecipeListType = PropType<RecipesQuery, 'recipes'> | undefined
+type RecipeListType = PropType<RecipesQuery, 'recipes'>[0]
 
 const RecipeListPage = () => {
   const { loading, error, data, refetch } = useRecipesQuery({
@@ -64,7 +60,7 @@ const RecipeListPage = () => {
         {renderList<RecipeListType>(
           data?.recipes,
           loading,
-          ({ slug, title, author, coverImage }: Recipe) => (
+          ({ slug, title, author, coverImage }: RecipeListType) => (
             <RecipeCardSmall
               key={slug}
               title={title}
