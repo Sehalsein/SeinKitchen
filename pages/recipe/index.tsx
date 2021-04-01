@@ -27,7 +27,7 @@ const RecipeListPage = () => {
     })
   }, [debouncedValue])
 
-  if (error) return <h1>Error</h1>
+  if (error) return <h1>{"Error"}</h1>
 
   return (
     <Layout title='Sein Kitchen' description=''>
@@ -71,10 +71,10 @@ const RecipeListPage = () => {
             />
           ),
           () => {
-            return <h1>No Data</h1>
+            return <h1>{"No Data"}</h1>
           },
           () => {
-            return <h1>loading</h1>
+            return <h1>{"Loading"}</h1>
           }
         )}
       </div>

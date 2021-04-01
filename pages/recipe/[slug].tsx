@@ -14,8 +14,8 @@ const RecipeDetailPage = () => {
     }
   })
 
-  if (error) return <h1>Error</h1>
-  if (loading) return <h1>Loading</h1>
+  if (error) return <h1>{"Error"}</h1>
+  if (loading) return <h1>{"Loading"}</h1>
 
   return (
     <Layout
@@ -57,7 +57,7 @@ const RecipeDetailPage = () => {
         </>
       )}
 
-      {!data || (!data.recipe && <h1>No Recipe Found</h1>)}
+      {!data || (!data.recipe && <h1>{"No Recipe Found"}</h1>)}
     </Layout>
   )
 }

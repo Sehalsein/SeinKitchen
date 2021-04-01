@@ -89,17 +89,17 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
         <div>
           <NextLink href='/'>
             <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>
-              Home
+              {"Home"}
             </a>
           </NextLink>
           <NextLink href='/recipe'>
             <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>
-              Recipes
+              {"Recipes"}
             </a>
           </NextLink>
           <NextLink href='/about'>
             <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>
-              About
+              {"About"}
             </a>
           </NextLink>
         </div>
@@ -113,17 +113,17 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
           <div className='flex flex-col space-y-4'>
             <NextLink href='/'>
               <a className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'>
-                Home
+                {"Home"}
               </a>
             </NextLink>
             <NextLink href='/recipe'>
               <a className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'>
-                Recipe
+                {"Recipe"}
               </a>
             </NextLink>
             <NextLink href='/about'>
               <a className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'>
-                About
+                {"About"}
               </a>
             </NextLink>
           </div>
@@ -134,7 +134,7 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
               rel='noopener noreferrer'
               href='https://instagram.com/seinkitchen'
             >
-              Instagram
+              {"Instagram"}
             </a>
             <a
               className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'
@@ -142,7 +142,7 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
               rel='noopener noreferrer'
               href='https://github.com/Sehalsein/SeinKitchen'
             >
-              Github
+              {"Github"}
             </a>
           </div>
         </div>

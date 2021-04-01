@@ -8,9 +8,9 @@ const MyApp = (props: AppProps) => {
   const { Component, pageProps } = props
 
   return (
-    <React.Fragment>
+    <>
       <Head>
-        <title>Sein Kitchen</title>
+        <title>{"Sein Kitchen"}</title>
         <meta
           name='viewport'
           content='minimum-scale=1, initial-scale=1, width=device-width'
@@ -19,7 +19,7 @@ const MyApp = (props: AppProps) => {
       <ThemeProvider attribute='class'>
         <Component {...pageProps} />
       </ThemeProvider>
-    </React.Fragment>
+    </>
   )
 }
 

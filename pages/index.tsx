@@ -26,7 +26,7 @@ const HomePage = () => {
     }
   })
 
-  if (error) return <h1>Error</h1>
+  if (error) return <h1>{"Error"}</h1>
 
   return (
     <Layout title='Sein Kitchen' description=''>
@@ -41,7 +41,7 @@ const HomePage = () => {
       )}
 
       <h1 className='font-bold text-3xl md:text-5xl mb-4 text-black dark:text-white p-2'>
-        Featured
+        {"Featured"}
       </h1>
       <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4'>
         {renderList<RecipeListType>(
@@ -58,15 +58,15 @@ const HomePage = () => {
             />
           ),
           () => {
-            return <h1>No Data</h1>
+            return <h1>{"No Data"}</h1>
           },
           () => {
-            return <h1>loading</h1>
+            return <h1>{"Loading"}</h1>
           }
         )}
       </div>
       <h1 className='font-bold text-3xl md:text-5xl mt-8 mb-4 text-black dark:text-white p-2'>
-        Latest
+        {"Latest"}
       </h1>
       <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4'>
         {renderList<RecipeListType>(
@@ -83,10 +83,10 @@ const HomePage = () => {
             />
           ),
           () => {
-            return <h1>No Data</h1>
+            return <h1>{"No Data"}</h1>
           },
           () => {
-            return <h1>loading</h1>
+            return <h1>{"Loading"}</h1>
           }
         )}
       </div>

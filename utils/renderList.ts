@@ -1,9 +1,15 @@
+import { ReactNode } from 'react'
+
 export default function renderList<T>(
   collection: T[] | undefined,
   loading: boolean,
-  renderItem: (item: T, index: number | undefined, collection: T[]) => any,
-  renderEmpty?: () => any,
-  renderLoading?: () => any
+  renderItem: (
+    item: T,
+    index: number | undefined,
+    collection: T[]
+  ) => ReactNode | undefined | null,
+  renderEmpty?: () => ReactNode | undefined | null,
+  renderLoading?: () => ReactNode | undefined | null
 ) {
   if (loading) {
     return renderLoading ? renderLoading() : null
