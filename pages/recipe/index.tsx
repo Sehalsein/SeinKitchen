@@ -13,7 +13,7 @@ const RecipeListPage = () => {
         <input
           aria-label='Search recipes'
           type='text'
-          onChange={(e) => {
+          onChange={() => {
             console.log('Search')
           }}
           placeholder='Search Recipes'
