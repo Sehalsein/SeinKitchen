@@ -38,7 +38,7 @@ const AuthorDetail = () => {
         {renderList<RecipeListType>(
           data?.author?.recipes,
           loading,
-          ({ slug, title, author, coverImage }: RecipeListType) => (
+          ({ slug, title, coverImage }: RecipeListType) => (
             <RecipeCardSmall
               key={slug}
               title={title}
