@@ -1,0 +1,56 @@
+query recipes($title: String, $first: Int) {
+  recipes(where: { title_contains: $title }, first: $first) {
+    title
+    slug
+    coverImage {
+      url
+    }
+    author {
+      id
+      name
+    }
+  }
+}
+
+query recipe($slug: String!) {
+  recipe(where: { slug: $slug }) {
+    title
+    slug
+    content
+    publishedAt
+    coverImage {
+      url
+    }
+    author {
+      id
+      name
+    }
+  }
+}
+
+query homePageRecipes($first: Int, $slug: String!) {
+  recipes(first: $first) {
+    title
+    slug
+    coverImage {
+      url
+    }
+    author {
+      id
+      name
+    }
+  }
+  recipe(where: { slug: $slug }) {
+    title
+    slug
+    content
+    publishedAt
+    coverImage {
+      url
+    }
+    author {
+      id
+      name
+    }
+  }
+}

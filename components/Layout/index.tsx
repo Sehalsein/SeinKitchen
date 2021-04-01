@@ -6,9 +6,14 @@ import { useTheme } from 'next-themes'
 
 type LayoutType = {
   children: ReactNode
+  title: string
+  description: string
+  image?: string
+  date?: string
+  type?: string
 }
 
-const Layout: React.FC<LayoutType> = ({ children }: LayoutType) => {
+const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
@@ -17,13 +22,6 @@ const Layout: React.FC<LayoutType> = ({ children }: LayoutType) => {
 
   const router = useRouter()
 
-  const meta = {
-    title: 'Sehal Sein',
-    description: 'Sein kitchen',
-    image: 'Sein Kitchen',
-    date: undefined,
-    type: ''
-  }
   return (
     <div className='bg-white dark:bg-black'>
       <NextHead>
@@ -42,7 +40,10 @@ const Layout: React.FC<LayoutType> = ({ children }: LayoutType) => {
         <meta property='og:site_name' content='Lee Robinson' />
         <meta property='og:description' content={meta.description} />
         <meta property='og:title' content={meta.title} />
-        <meta property='og:image' content={meta.image} />
+        <meta
+          property='og:image'
+          content={meta.image || '/images/placeholder.webp'}
+        />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:site' content='@leeerob' />
         <meta name='twitter:title' content={meta.title} />

@@ -8,7 +8,7 @@ type RecipeCardSmallType = {
   authorId: string
   recipeSlug: string
   rating?: number
-  image?: string
+  coverImage?: string
   onClick?: () => void
 }
 
@@ -17,14 +17,15 @@ const RecipeCardSmall: React.FC<RecipeCardSmallType> = ({
   rating = 0,
   author,
   authorId,
-  recipeSlug
+  recipeSlug,
+  coverImage="/images/placeholder.webp"
 }: RecipeCardSmallType) => {
   return (
     <div className='rounded-xl p-2'>
       <NextLink href={`recipe/${recipeSlug}`}>
         <div className='relative rounded-2xl w-full bg-grey-300 h-52 cursor-pointer'>
           <NextImage
-            src='/images/placeholder.webp'
+            src={coverImage}
             alt={title}
             layout='fill'
             objectFit='cover'
