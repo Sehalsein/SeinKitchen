@@ -87,17 +87,65 @@ const Layout: React.FC<LayoutType> = ({ children }: LayoutType) => {
         </button>
         <div>
           <NextLink href='/'>
-            <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>Home</a>
+            <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>
+              Home
+            </a>
           </NextLink>
-
+          <NextLink href='/recipe'>
+            <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>
+              Recipes
+            </a>
+          </NextLink>
           <NextLink href='/about'>
-            <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>About</a>
+            <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>
+              About
+            </a>
           </NextLink>
         </div>
       </nav>
       <main className='flex flex-col max-w-5xl w-full mx-auto py-8 px-2'>
         {children}
       </main>
+      <footer className='flex flex-col justify-center items-start max-w-5xl mx-auto w-full px-2'>
+        <hr className='w-full border-1 border-gray-200 dark:border-gray-800 mb-8' />
+        <div className='w-full max-w-2xl grid grid-cols-1 gap-4 pb-16 sm:grid-cols-3'>
+          <div className='flex flex-col space-y-4'>
+            <NextLink href='/'>
+              <a className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'>
+                Home
+              </a>
+            </NextLink>
+            <NextLink href='/recipe'>
+              <a className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'>
+                Recipe
+              </a>
+            </NextLink>
+            <NextLink href='/about'>
+              <a className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'>
+                About
+              </a>
+            </NextLink>
+          </div>
+          <div className='flex flex-col space-y-4'>
+            <a
+              className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'
+              target='_blank'
+              rel='noopener noreferrer'
+              href='https://instagram.com/seinkitchen'
+            >
+              Instagram
+            </a>
+            <a
+              className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'
+              target='_blank'
+              rel='noopener noreferrer'
+              href='https://github.com/Sehalsein/SeinKitchen'
+            >
+              Github
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

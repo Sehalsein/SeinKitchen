@@ -58,7 +58,7 @@ const RecipeCardSmall: React.FC<RecipeCardSmallType> = ({
           <span className='ml-0.5 text-black dark:text-white'>{rating}</span>
         </span>
         <NextLink href={`/author/${authorId}`}>
-          <a className='text-gray-800 dark:text-white uppercase hover:text-green-500'>
+          <a className='text-gray-800 dark:text-white uppercase hover:text-pink-500 dark:hover:text-pink-500'>
             {author}
           </a>
         </NextLink>

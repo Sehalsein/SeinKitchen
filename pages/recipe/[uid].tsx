@@ -21,10 +21,10 @@ const RecipeDetailPage = () => {
       <span className='mx-1 border-b-4 border-pink-600 w-min text-pink-600 font-bold'>
         {category}
       </span>
-      <h1 className='text-6xl text-black dark:text-white'>{title}</h1>
+      <h1 className='text-6xl text-black dark:text-white mt-2'>{title}</h1>
       <div className='flex items-center justify-start my-2'>
-        <span className='mx-1 text-black dark:text-white'>{publishedAt}</span>
-        <span className='mx-1 text-black dark:text-white'>{authorName}</span>
+        <span className='mx-1 text-gray-800 dark:text-white'>{publishedAt}</span>
+        <span className='mx-1 text-gray-800 dark:text-white'>{authorName}</span>
       </div>
 
       <NextImage
