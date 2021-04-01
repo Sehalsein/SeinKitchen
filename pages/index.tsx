@@ -7,7 +7,7 @@ const RecipeCardSmall = dynamic(
   () => import('@components/Cards/RecipeCardSmall')
 )
 
-const DefaultPage = () => {
+const HomePage = () => {
   const {
     title,
     category,
@@ -76,4 +76,4 @@ const DefaultPage = () => {
   )
 }
 
-export default DefaultPage
+export default HomePage
