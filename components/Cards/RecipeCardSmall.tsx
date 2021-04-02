@@ -23,7 +23,7 @@ const RecipeCardSmall: React.FC<RecipeCardSmallType> = ({
   return (
     <div className='rounded-xl p-2'>
       <NextLink href={`/recipe/${recipeSlug}`}>
-        <div className='relative rounded-2xl w-full bg-grey-300 h-52 cursor-pointer'>
+        <div className='relative rounded-2xl w-full bg-gray-300 h-52 cursor-pointer'>
           <NextImage
             src={coverImage}
             alt={title}

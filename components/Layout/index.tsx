@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
   const router = useRouter()
 
   return (
-    <div className='bg-white dark:bg-black'>
+    <div className='bg-white dark:bg-black px-4 md:px-8'>
       <NextHead>
         <title>{meta.title}</title>
         <meta name='robots' content='follow, index' />
@@ -42,18 +42,21 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
         <meta property='og:title' content={meta.title} />
         <meta
           property='og:image'
-          content={meta.image || '/images/placeholder.webp'}
+          content={meta.image || '/images/applogo.png'}
         />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:site' content='@leeerob' />
         <meta name='twitter:title' content={meta.title} />
         <meta name='twitter:description' content={meta.description} />
-        <meta name='twitter:image' content={meta.image} />
+        <meta
+          name='twitter:image'
+          content={meta.image || '/images/applogo.png'}
+        />
         {meta.date && (
           <meta property='article:published_time' content={meta.date} />
         )}
       </NextHead>
-      <nav className='sticky top-0 z-10	flex justify-between items-center bg-white dark:bg-black max-w-5xl w-full mx-auto py-8 px-2 '>
+      <nav className='sticky top-0 z-10	flex justify-between items-center bg-white dark:bg-black max-w-5xl w-full mx-auto py-8'>
         <button
           aria-label='Toggle Dark Mode'
           type='button'
@@ -89,12 +92,12 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
         <div>
           <NextLink href='/'>
             <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>
-              {"Home"}
+              {'Home'}
             </a>
           </NextLink>
           <NextLink href='/recipe'>
             <a className='p-1 sm:p-4 text-black dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 rounded-md'>
-              {"Recipes"}
+              {'Recipes'}
             </a>
           </NextLink>
           {/* <NextLink href='/about'>
@@ -104,7 +107,7 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
           </NextLink> */}
         </div>
       </nav>
-      <main className='flex flex-col max-w-5xl w-full mx-auto py-8 px-2'>
+      <main className='flex flex-col max-w-5xl w-full mx-auto py-8'>
         {children}
       </main>
       <footer className='flex flex-col justify-center items-start max-w-5xl mx-auto w-full px-2'>
@@ -113,12 +116,12 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
           <div className='flex flex-col space-y-4'>
             <NextLink href='/'>
               <a className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'>
-                {"Home"}
+                {'Home'}
               </a>
             </NextLink>
             <NextLink href='/recipe'>
               <a className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'>
-                {"Recipe"}
+                {'Recipe'}
               </a>
             </NextLink>
             {/* <NextLink href='/about'>
@@ -134,7 +137,7 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
               rel='noopener noreferrer'
               href='https://instagram.com/seinkitchen'
             >
-              {"Instagram"}
+              {'Instagram'}
             </a>
             <a
               className='text-black dark:text-white hover:text-pink-500 dark:hover:text-pink-500 transition'
@@ -142,7 +145,7 @@ const Layout: React.FC<LayoutType> = ({ children, ...meta }: LayoutType) => {
               rel='noopener noreferrer'
               href='https://github.com/Sehalsein/SeinKitchen'
             >
-              {"Github"}
+              {'Github'}
             </a>
           </div>
         </div>

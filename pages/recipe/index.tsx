@@ -10,6 +10,9 @@ import useDebounce from '@utils/hooks/useDebounce'
 const RecipeCardSmall = dynamic(
   () => import('@components/Cards/RecipeCardSmall')
 )
+const LoadingRecipeCardSmall = dynamic(
+  () => import('@components/Loading/LoadingRecipeCardSmall')
+)
 
 type RecipeListType = PropType<RecipesQuery, 'recipes'>[0]
 
@@ -27,7 +30,7 @@ const RecipeListPage = () => {
     })
   }, [debouncedValue])
 
-  if (error) return <h1>{"Error"}</h1>
+  if (error) return <h1>{'Error'}</h1>
 
   return (
     <Layout title='Sein Kitchen' description='Sein Kitchen'>
@@ -71,10 +74,10 @@ const RecipeListPage = () => {
             />
           ),
           () => {
-            return <h1>{"No Data"}</h1>
+            return <h1>{'No Recipe Found'}</h1>
           },
           () => {
-            return <h1>{"Loading"}</h1>
+            return [0, 1, 2].map((val) => <LoadingRecipeCardSmall key={val} />)
           }
         )}
       </div>

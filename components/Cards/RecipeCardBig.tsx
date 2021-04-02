@@ -41,15 +41,17 @@ const RecipeCardBig: React.FC<RecipeCardBigType> = ({
         </NextLink>
       </div>
       <div className='sm:col-span-2'>
-        <NextImage
-          className='rounded-2xl bg-grey-300'
-          src={coverImage}
-          alt={title}
-          layout='responsive'
-          width={2}
-          height={1.25}
-          objectFit='cover'
-        />
+        <NextLink href={`/recipe/${recipeSlug}`}>
+          <NextImage
+            className='rounded-2xl bg-gray-300'
+            src={coverImage}
+            alt={title}
+            layout='responsive'
+            width={2}
+            height={1.25}
+            objectFit='cover'
+          />
+        </NextLink>
       </div>
     </div>
   )

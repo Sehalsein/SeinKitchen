@@ -8,13 +8,17 @@ import {
 import { PropType } from '@utils/misc'
 import renderList from '@utils/renderList'
 import withApollo from '@utils/graphql/withApollo'
-// import RecipeCardBig from '@components/Cards/RecipeCardBig'
 
 const RecipeCardSmall = dynamic(
   () => import('@components/Cards/RecipeCardSmall')
 )
-
 const RecipeCardBig = dynamic(() => import('@components/Cards/RecipeCardBig'))
+const LoadingRecipeCardSmall = dynamic(
+  () => import('@components/Loading/LoadingRecipeCardSmall')
+)
+const LoadingRecipeCardBig = dynamic(
+  () => import('@components/Loading/LoadingRecipeCardBig')
+)
 
 type RecipeListType = PropType<RecipesQuery, 'recipes'>[0]
 
@@ -26,11 +30,16 @@ const HomePage = () => {
     }
   })
 
-  if (error) return <h1>{"Error"}</h1>
+  if (error) return <h1>{'Error'}</h1>
 
   return (
-    <Layout title='Sein Kitchen' description='Sein Kitchen'>
-      {data && data.recipe && (
+    <Layout
+      title='Sein Kitchen'
+      description='Sein Kitchen'
+      date={data?.recipe?.publishedAt}
+      image={data?.recipe?.coverImage?.url}
+    >
+      {!loading && data && data.recipe && (
         <RecipeCardBig
           title={data.recipe.title}
           author={data.recipe.author?.name || ''}
@@ -41,8 +50,10 @@ const HomePage = () => {
         />
       )}
 
+      {loading && <LoadingRecipeCardBig />}
+
       <h1 className='font-bold text-3xl md:text-5xl mb-4 text-black dark:text-white p-2'>
-        {"Featured"}
+        {'Featured'}
       </h1>
       <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4'>
         {renderList<RecipeListType>(
@@ -59,15 +70,15 @@ const HomePage = () => {
             />
           ),
           () => {
-            return <h1>{"No Data"}</h1>
+            return <h1>{'No Data'}</h1>
           },
           () => {
-            return <h1>{"Loading"}</h1>
+            return [0, 1, 2].map((val) => <LoadingRecipeCardSmall key={val} />)
           }
         )}
       </div>
       <h1 className='font-bold text-3xl md:text-5xl mt-8 mb-4 text-black dark:text-white p-2'>
-        {"Latest"}
+        {'Latest'}
       </h1>
       <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4'>
         {renderList<RecipeListType>(
@@ -84,10 +95,10 @@ const HomePage = () => {
             />
           ),
           () => {
-            return <h1>{"No Data"}</h1>
+            return <h1>{'No Data'}</h1>
           },
           () => {
-            return <h1>{"Loading"}</h1>
+            return [0, 1, 2].map((val) => <LoadingRecipeCardSmall key={val} />)
           }
         )}
       </div>
